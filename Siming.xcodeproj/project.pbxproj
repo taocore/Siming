@@ -37,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04950F4016D7634100756660 /* TCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCommon.h; sourceTree = "<group>"; };
 		04C1609116BB545100B19972 /* Siming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C1609516BB545200B19972 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04C1609716BB545200B19972 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04950F3F16D7634100756660 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				04950F4016D7634100756660 /* TCCommon.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		04C1608616BB545100B19972 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +127,7 @@
 		04C1609B16BB545200B19972 /* Siming */ = {
 			isa = PBXGroup;
 			children = (
+				04950F3F16D7634100756660 /* utils */,
 				04C160C616BB566900B19972 /* Images */,
 				04C160A416BB545200B19972 /* TCAppDelegate.h */,
 				04C160A516BB545200B19972 /* TCAppDelegate.m */,
@@ -281,7 +291,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yanbin Zheng (LLUNZ33SM5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -296,6 +306,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F6F6C9D-77A5-47E2-822E-006045644A0D";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -328,6 +339,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Siming/Siming-Prefix.pch";
 				INFOPLIST_FILE = "Siming/Siming-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -339,6 +351,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Siming/Siming-Prefix.pch";
 				INFOPLIST_FILE = "Siming/Siming-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
