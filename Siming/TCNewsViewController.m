@@ -13,6 +13,7 @@
 #import "TBXML+Compression.h"
 #import "TBXML+HTTP.h"
 #import "UIImageView+WebCache.h"
+#import "TCImagePage.h"
 
 @interface TCNewsViewController ()
 
@@ -49,26 +50,26 @@
     int pageNumber = 5;
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * pageNumber, scrollView.frame.size.height);
     scrollView.delegate = self;
+    NSUInteger pageWidth = scrollView.frame.size.width;
     [self.view addSubview:scrollView];
+    for (int i = 0; i < 5; i++)
+    {
+        CGRect frame = scrollView.frame;
+        frame.origin = CGPointMake(pageWidth * i, 0);
+        TCImagePage *view = [[TCImagePage alloc] initWithFrame:frame];
+        //view.tag = i + 1;
+        [scrollView addSubview:view];
+    }
     self.scrollView = scrollView;
     
     UIView* pageControlView = [[UIView alloc] initWithFrame:CGRectMake(0, 160, kDeviceWidth, 20)];
+    pageControlView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:pageControlView];
     UIPageControl* pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, 20)];
     pageControl.numberOfPages = pageNumber;
     pageControl.userInteractionEnabled = NO;
     [pageControlView addSubview:pageControl];
     self.pageControl = pageControl;
-    
-    for (int i = 0; i < 5; i++)
-    {
-        UIImageView *view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"picnews"]];
-        view.frame = scrollView.frame;
-        CGRect frame = view.frame;
-        frame.origin = CGPointMake(scrollView.frame.size.width * i, 0);
-        view.frame = frame;
-        [scrollView addSubview:view];
-    }
         
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 180, 320, kMainViewHeight - 180) style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
@@ -99,12 +100,15 @@
                        int i = 0;
                        for (TCDoc* doc in weakSelf.docs)
                        {
+                           NSLog(@"i:%d", i);
                            NSString* docUrl = doc.docPubUrl;
                            NSString* baseUrl = [docUrl stringByDeletingLastPathComponent];
                            NSString* imageUrl = [baseUrl stringByAppendingPathComponent:doc.imagePath];
-                           NSArray* imageViews = self.scrollView.subviews;
-                           UIImageView* imageView = imageViews[i++];
-                           [imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+                           NSLog(@"imageUrl: %@", imageUrl);
+                           TCImagePage* imageView = self.scrollView.subviews[i];
+                           imageView.imageUrl = imageUrl;
+                           imageView.title = doc.title;
+                           i++;
                        }
                    }
                    failure:^(TBXML* tbxml, NSError* error){
