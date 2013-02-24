@@ -50,6 +50,7 @@
 		E9BEAD1A16DA2F29004DBB37 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEAD1016DA2F29004DBB37 /* UIImageView+WebCache.m */; };
 		E9BEAD1C16DA2F80004DBB37 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BEAD1B16DA2F80004DBB37 /* ImageIO.framework */; };
 		E9BEAD1E16DA3280004DBB37 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BEAD1D16DA3280004DBB37 /* MapKit.framework */; };
+		E9BEAD2116DA4B27004DBB37 /* TCImagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */; };
 		E9C090CA16D7A2FF008CD8AD /* Entitlement.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9C090C916D7A2FF008CD8AD /* Entitlement.plist */; };
 		E9C090CF16D7B942008CD8AD /* TCDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C090CE16D7B942008CD8AD /* TCDoc.m */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,8 @@
 		E9BEAD1016DA2F29004DBB37 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		E9BEAD1B16DA2F80004DBB37 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E9BEAD1D16DA3280004DBB37 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E9BEAD1F16DA4B27004DBB37 /* TCImagePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCImagePage.h; sourceTree = "<group>"; };
+		E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCImagePage.m; sourceTree = "<group>"; };
 		E9C090C916D7A2FF008CD8AD /* Entitlement.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlement.plist; sourceTree = "<group>"; };
 		E9C090CD16D7B942008CD8AD /* TCDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDoc.h; sourceTree = "<group>"; };
 		E9C090CE16D7B942008CD8AD /* TCDoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDoc.m; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				04D3241316BB85BB00312277 /* TCQuestionViewController.h */,
 				04D3241416BB85BB00312277 /* TCQuestionViewController.m */,
 				04C1609C16BB545200B19972 /* Supporting Files */,
+				E9BEAD1F16DA4B27004DBB37 /* TCImagePage.h */,
+				E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */,
 			);
 			path = Siming;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				E9BEAD1816DA2F29004DBB37 /* SDWebImagePrefetcher.m in Sources */,
 				E9BEAD1916DA2F29004DBB37 /* UIButton+WebCache.m in Sources */,
 				E9BEAD1A16DA2F29004DBB37 /* UIImageView+WebCache.m in Sources */,
+				E9BEAD2116DA4B27004DBB37 /* TCImagePage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
