@@ -25,7 +25,8 @@
     if (self) {
         // Initialization code
         UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"picnews"]];
-        imageView.frame = frame;
+        CGRect imageViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        imageView.frame = imageViewFrame;
         [self addSubview:imageView];
         self.imageView = imageView;
         CGRect labelFrame = CGRectMake(0, frame.size.height - 30, kDeviceWidth, 30);
