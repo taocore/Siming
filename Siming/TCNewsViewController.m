@@ -14,6 +14,7 @@
 #import "TBXML+HTTP.h"
 #import "UIImageView+WebCache.h"
 #import "TCImagePage.h"
+#import "MBProgressHUD.h"
 
 @interface TCNewsViewController ()
 
@@ -74,6 +75,8 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 180, 320, kMainViewHeight - 180) style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     [self loadData];
+    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在加载新闻，请稍候...";
 }
 
 - (void)loadData
@@ -87,11 +90,11 @@
                            TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
                            if (object)
                            {
-                               TCDoc* doc = [weakSelf docWithElement:object];
+                               TCDoc* doc = [TCDoc docWithElement:object];
                                [weakSelf.docs addObject:doc];
                                while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
                                {
-                                   TCDoc* doc = [weakSelf docWithElement:object];
+                                   TCDoc* doc = [TCDoc docWithElement:object];
                                    [weakSelf.docs addObject:doc];
                                }
                            }
@@ -100,15 +103,12 @@
                        int i = 0;
                        for (TCDoc* doc in weakSelf.docs)
                        {
-                           NSLog(@"i:%d", i);
+                           TCImagePage* imageView = self.scrollView.subviews[i++];
+                           imageView.title = doc.title;
                            NSString* docUrl = doc.docPubUrl;
                            NSString* baseUrl = [docUrl stringByDeletingLastPathComponent];
                            NSString* imageUrl = [baseUrl stringByAppendingPathComponent:doc.imagePath];
-                           NSLog(@"imageUrl: %@", imageUrl);
-                           TCImagePage* imageView = self.scrollView.subviews[i];
                            imageView.imageUrl = imageUrl;
-                           imageView.title = doc.title;
-                           i++;
                        }
                    }
                    failure:^(TBXML* tbxml, NSError* error){
@@ -124,21 +124,6 @@
                    failure:^(TBXML* tbxml, NSError* error){
                        NSLog(@"error: %@", error);
                    }];*/
-}
-
-- (TCDoc*)docWithElement:(TBXMLElement*) docElement
-{
-    TCDoc* doc = [[TCDoc alloc] init];
-    TBXMLElement* docId = [TBXML childElementNamed:@"docid" parentElement:docElement];
-    doc.docId = [TBXML textForElement:docId];
-    TBXMLElement* title = [TBXML childElementNamed:@"title" parentElement:docElement];
-    doc.title = [TBXML textForElement:title];
-    TBXMLElement* imagePath = [TBXML childElementNamed:@"imagepath" parentElement:docElement];
-    doc.imagePath = [TBXML textForElement:imagePath];
-    NSLog(@"imagePath: %@", doc.imagePath);
-    TBXMLElement* docPubUrl = [TBXML childElementNamed:@"docpuburl" parentElement:docElement];
-    doc.docPubUrl = [TBXML textForElement:docPubUrl];
-    return doc;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

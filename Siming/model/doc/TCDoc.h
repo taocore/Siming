@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TBXML.h"
 
 @interface TCDoc : NSObject
 
@@ -14,5 +15,7 @@
 @property (copy, nonatomic) NSString* title;
 @property (copy, nonatomic) NSString* imagePath;
 @property (copy, nonatomic) NSString* docPubUrl;
+
++ (TCDoc*)docWithElement:(TBXMLElement*) docElement;
 
 @end
