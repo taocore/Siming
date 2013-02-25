@@ -114,6 +114,16 @@
                    failure:^(TBXML* tbxml, NSError* error){
                        
                    }];
+    url = [NSURL URLWithString:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105&id=10461662&channelId=2340"];
+    //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
+    NSLog(@"data: %@", [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil]);
+    /*[TBXML newTBXMLWithURL:url
+                   success:^(TBXML *tbxml){
+                       NSLog(@"xml: %@", tbxml);
+                   }
+                   failure:^(TBXML* tbxml, NSError* error){
+                       NSLog(@"error: %@", error);
+                   }];*/
 }
 
 - (TCDoc*)docWithElement:(TBXMLElement*) docElement

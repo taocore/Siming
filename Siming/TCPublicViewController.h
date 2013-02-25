@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCPublicViewController : UIViewController
+@interface TCPublicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
