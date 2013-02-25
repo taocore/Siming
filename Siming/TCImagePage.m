@@ -31,7 +31,7 @@
         self.imageView = imageView;
         CGRect labelFrame = CGRectMake(0, frame.size.height - 30, kDeviceWidth, 30);
         UILabel* label = [[UILabel alloc] initWithFrame:labelFrame];
-        label.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.3];
+        label.backgroundColor = [[UIColor alloc] initWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:14];

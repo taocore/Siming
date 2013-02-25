@@ -34,6 +34,9 @@
 		04C160E216BB566900B19972 /* xxgk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C160D416BB566900B19972 /* xxgk@2x.png */; };
 		04D3241216BB84F300312277 /* TCOfficeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3241116BB84F300312277 /* TCOfficeViewController.m */; };
 		04D3241516BB85BB00312277 /* TCQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3241416BB85BB00312277 /* TCQuestionViewController.m */; };
+		E9BD10F016DB95B500023825 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10EF16DB95B500023825 /* MBProgressHUD.m */; };
+		E9BD10F316DB98CF00023825 /* TCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F216DB98CF00023825 /* TCChannel.m */; };
+		E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */; };
 		E9BEA31516D858F0003C4F42 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31016D858F0003C4F42 /* TBXML+Compression.m */; };
 		E9BEA31616D858F0003C4F42 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31216D858F0003C4F42 /* TBXML+HTTP.m */; };
 		E9BEA31716D858F0003C4F42 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31416D858F0003C4F42 /* TBXML.m */; };
@@ -92,6 +95,12 @@
 		04D3241116BB84F300312277 /* TCOfficeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOfficeViewController.m; sourceTree = "<group>"; };
 		04D3241316BB85BB00312277 /* TCQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCQuestionViewController.h; sourceTree = "<group>"; };
 		04D3241416BB85BB00312277 /* TCQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCQuestionViewController.m; sourceTree = "<group>"; };
+		E9BD10EE16DB95B500023825 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		E9BD10EF16DB95B500023825 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		E9BD10F116DB98CF00023825 /* TCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChannel.h; sourceTree = "<group>"; };
+		E9BD10F216DB98CF00023825 /* TCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChannel.m; sourceTree = "<group>"; };
+		E9BD10F416DB9F2100023825 /* TCDocItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDocItemsViewController.h; sourceTree = "<group>"; };
+		E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDocItemsViewController.m; sourceTree = "<group>"; };
 		E9BEA30F16D858F0003C4F42 /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
 		E9BEA31016D858F0003C4F42 /* TBXML+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+Compression.m"; sourceTree = "<group>"; };
 		E9BEA31116D858F0003C4F42 /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
@@ -188,6 +197,7 @@
 		04C1609B16BB545200B19972 /* Siming */ = {
 			isa = PBXGroup;
 			children = (
+				E9BD10ED16DB959000023825 /* MBProgressHUD */,
 				E9BEACFB16DA2F29004DBB37 /* SDWebImage */,
 				E9BEA30E16D858F0003C4F42 /* TBXML */,
 				E9C090CB16D7B8FE008CD8AD /* model */,
@@ -206,6 +216,8 @@
 				04C1609C16BB545200B19972 /* Supporting Files */,
 				E9BEAD1F16DA4B27004DBB37 /* TCImagePage.h */,
 				E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */,
+				E9BD10F416DB9F2100023825 /* TCDocItemsViewController.h */,
+				E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */,
 			);
 			path = Siming;
 			sourceTree = "<group>";
@@ -243,6 +255,15 @@
 				04C160D416BB566900B19972 /* xxgk@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		E9BD10ED16DB959000023825 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E9BD10EE16DB95B500023825 /* MBProgressHUD.h */,
+				E9BD10EF16DB95B500023825 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		E9BEA30E16D858F0003C4F42 /* TBXML */ = {
@@ -299,6 +320,8 @@
 			children = (
 				E9C090CD16D7B942008CD8AD /* TCDoc.h */,
 				E9C090CE16D7B942008CD8AD /* TCDoc.m */,
+				E9BD10F116DB98CF00023825 /* TCChannel.h */,
+				E9BD10F216DB98CF00023825 /* TCChannel.m */,
 			);
 			path = doc;
 			sourceTree = "<group>";
@@ -405,6 +428,9 @@
 				E9BEAD1916DA2F29004DBB37 /* UIButton+WebCache.m in Sources */,
 				E9BEAD1A16DA2F29004DBB37 /* UIImageView+WebCache.m in Sources */,
 				E9BEAD2116DA4B27004DBB37 /* TCImagePage.m in Sources */,
+				E9BD10F016DB95B500023825 /* MBProgressHUD.m in Sources */,
+				E9BD10F316DB98CF00023825 /* TCChannel.m in Sources */,
+				E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
