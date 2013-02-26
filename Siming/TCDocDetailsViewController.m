@@ -45,8 +45,7 @@
 
 - (void)loadData
 {
-    NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
-    url = [url stringByAppendingFormat:@"&channelId=%@&id=%@", self.channelId, self.docId];
+    NSString* url = [self.detailsUrl stringByAppendingFormat:@"&channelId=%@&id=%@", self.channelId, self.docId];
     NSLog(@"url: %@", url);
     //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

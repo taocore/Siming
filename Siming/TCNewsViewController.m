@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "TCImagePage.h"
 #import "MBProgressHUD.h"
+#import "TCMoreNewsViewController.h"
 
 @interface TCNewsViewController ()
 
@@ -147,7 +148,8 @@
 
 - (void)more
 {
-    //todo
+    TCMoreNewsViewController* controller = [[TCMoreNewsViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

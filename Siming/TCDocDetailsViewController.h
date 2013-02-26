@@ -10,6 +10,7 @@
 
 @interface TCDocDetailsViewController : UIViewController
 
+@property (copy, nonatomic) NSString* detailsUrl;
 @property (copy, nonatomic) NSString* docId;
 @property (copy, nonatomic) NSString* channelId;
 @property (copy, nonatomic) NSString* docTitle;

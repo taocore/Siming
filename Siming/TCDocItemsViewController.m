@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kMainViewHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kMainViewHeight - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
@@ -112,6 +112,7 @@
     TCDoc* doc = self.docs[indexPath.row];
     NSLog(@"%@", doc);
     TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.detailsUrl = self.detailsUrl;
     controller.docId = doc.docId;
     controller.channelId = self.channelId;
     controller.docTitle = doc.title;
