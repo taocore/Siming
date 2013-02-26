@@ -15,6 +15,8 @@
 @property (copy, nonatomic) NSString* title;
 @property (copy, nonatomic) NSString* imagePath;
 @property (copy, nonatomic) NSString* docPubUrl;
+@property (copy, nonatomic) NSString* content;
+@property (copy, nonatomic) NSString* createDate;
 
 + (TCDoc*)docWithElement:(TBXMLElement*) docElement;
 

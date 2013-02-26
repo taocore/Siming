@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048A105D16DC85F600F9B7E8 /* TCDocDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */; };
 		04C1609616BB545200B19972 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609516BB545200B19972 /* UIKit.framework */; };
 		04C1609816BB545200B19972 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609716BB545200B19972 /* Foundation.framework */; };
 		04C1609A16BB545200B19972 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609916BB545200B19972 /* CoreGraphics.framework */; };
@@ -59,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048A105B16DC85F600F9B7E8 /* TCDocDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDocDetailsViewController.h; sourceTree = "<group>"; };
+		048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDocDetailsViewController.m; sourceTree = "<group>"; };
 		04950F4016D7634100756660 /* TCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCommon.h; sourceTree = "<group>"; };
 		04C1609116BB545100B19972 /* Siming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C1609516BB545200B19972 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -218,6 +221,8 @@
 				E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */,
 				E9BD10F416DB9F2100023825 /* TCDocItemsViewController.h */,
 				E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */,
+				048A105B16DC85F600F9B7E8 /* TCDocDetailsViewController.h */,
+				048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */,
 			);
 			path = Siming;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				E9BD10F016DB95B500023825 /* MBProgressHUD.m in Sources */,
 				E9BD10F316DB98CF00023825 /* TCChannel.m in Sources */,
 				E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */,
+				048A105D16DC85F600F9B7E8 /* TCDocDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

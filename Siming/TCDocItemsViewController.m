@@ -13,6 +13,7 @@
 #import "TBXML+Compression.h"
 #import "MBProgressHUD.h"
 #import "TCCommon.h"
+#import "TCDocDetailsViewController.h"
 
 @interface TCDocItemsViewController ()
 
@@ -71,7 +72,9 @@
                        }
                        NSLog(@"docs: %@", docs);
                        weakSelf.docs = docs;
+                       NSLog(@"aaa");
                        [weakSelf.tableView reloadData];
+                       NSLog(@"bbb");
                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    }
                    failure:^(TBXML* tbxml, NSError* error){
@@ -108,10 +111,11 @@
 {
     TCDoc* doc = self.docs[indexPath.row];
     NSLog(@"%@", doc);
-    NSString* url = [NSString stringWithFormat:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201&pageSize=5&channelId=%@", doc.docId];
-    //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
-    NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
-    //todo: show doc details
+    TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.docId = doc.docId;
+    controller.channelId = self.channelId;
+    controller.docTitle = doc.title;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

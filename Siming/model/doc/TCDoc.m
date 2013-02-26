@@ -27,12 +27,21 @@
     if (imagePath)
     {
         doc.imagePath = [TBXML textForElement:imagePath];
-        NSLog(@"imagePath: %@", doc.imagePath);
     }
     TBXMLElement* docPubUrl = [TBXML childElementNamed:@"docpuburl" parentElement:docElement];
     if (docPubUrl)
     {
         doc.docPubUrl = [TBXML textForElement:docPubUrl];
+    }
+    TBXMLElement* content = [TBXML childElementNamed:@"content" parentElement:docElement];
+    if (content)
+    {
+        doc.content = [TBXML textForElement:content];
+    }
+    TBXMLElement* createDate = [TBXML childElementNamed:@"createdate" parentElement:docElement];
+    if (createDate)
+    {
+        doc.createDate = [TBXML textForElement:createDate];
     }
     return doc;
 }
