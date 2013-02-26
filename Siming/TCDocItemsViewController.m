@@ -8,6 +8,11 @@
 
 #import "TCDocItemsViewController.h"
 #import "TCDoc.h"
+#import "TBXML.h"
+#import "TBXML+HTTP.h"
+#import "TBXML+Compression.h"
+#import "MBProgressHUD.h"
+#import "TCCommon.h"
 
 @interface TCDocItemsViewController ()
 
@@ -22,6 +27,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        if (!_pageSize)
+        {
+            _pageSize = 10;
+        }
     }
     return self;
 }
@@ -30,10 +39,49 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kMainViewHeight) style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
+    [self loadData];
+}
+
+- (void)loadData
+{
+    //MBProgressHUD* hud =
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __block TCDocItemsViewController* weakSelf = self;
+    NSString* url = [self.url stringByAppendingFormat:@"&pageSize=%d&channelId=%@", self.pageSize, self.channelId];
+    NSLog(@"url: %@", url);
+    [TBXML newTBXMLWithURL:[NSURL URLWithString:url]
+                   success:^(TBXML *tbxml){
+                       NSMutableArray* docs = [NSMutableArray array];
+                       if (tbxml.rootXMLElement) {
+                           TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
+                           if (object)
+                           {
+                               TCDoc* doc = [TCDoc docWithElement:object];
+                               [docs addObject:doc];
+                               while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
+                               {
+                                   TCDoc* doc = [TCDoc docWithElement:object];
+                                   [docs addObject:doc];
+                               }
+                           }
+                       }
+                       NSLog(@"docs: %@", docs);
+                       weakSelf.docs = docs;
+                       [weakSelf.tableView reloadData];
+                       [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                   }
+                   failure:^(TBXML* tbxml, NSError* error){
+                       NSLog(@"error: %@", error);
+                   }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

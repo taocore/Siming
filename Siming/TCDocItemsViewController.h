@@ -10,6 +10,9 @@
 
 @interface TCDocItemsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (copy, nonatomic) NSString* url;
+@property (nonatomic) NSUInteger pageSize;
+@property (copy, nonatomic) NSString* channelId;
 @property (copy, nonatomic) NSArray* docs;
 
 @end

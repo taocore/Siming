@@ -13,6 +13,7 @@
 #import "TBXML+HTTP.h"
 #import "TBXML+Compression.h"
 #import "TCDoc.h"
+#import "TCDocItemsViewController.h"
 
 @interface TCPublicViewController ()
 
@@ -63,7 +64,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,31 +90,14 @@
 {
     TCChannel* channel = self.list[indexPath.row];
     NSLog(@"%@", channel);
-    NSString* url = [NSString stringWithFormat:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201&pageSize=5&channelId=%@", channel.channelId];
+    NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
     //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
     //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
-    [TBXML newTBXMLWithURL:[NSURL URLWithString:url]
-                   success:^(TBXML *tbxml){
-                       NSMutableArray* docs = [NSMutableArray array];
-                       if (tbxml.rootXMLElement) {
-                           TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
-                           if (object)
-                           {
-                               TCDoc* doc = [TCDoc docWithElement:object];
-                               [docs addObject:doc];
-                               while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
-                               {
-                                   TCDoc* doc = [TCDoc docWithElement:object];
-                                   [docs addObject:doc];
-                               }
-                           }
-                       }
-                       NSLog(@"docs: %@", docs);
-                   }
-                   failure:^(TBXML* tbxml, NSError* error){
-                       
-                   }];
-
+    TCDocItemsViewController* controller = [[TCDocItemsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.url = url;
+    controller.channelId = channel.channelId;
+    controller.title = channel.name;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -110,6 +110,7 @@
                            NSString* imageUrl = [baseUrl stringByAppendingPathComponent:doc.imagePath];
                            imageView.imageUrl = imageUrl;
                        }
+                       [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    }
                    failure:^(TBXML* tbxml, NSError* error){
                        
