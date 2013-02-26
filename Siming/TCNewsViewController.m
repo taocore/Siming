@@ -24,6 +24,7 @@
 @property (nonatomic) NSString* currentElement;
 @property (nonatomic) TCDoc* currentDoc;
 @property (strong, nonatomic) NSMutableArray* docs;
+@property (copy, nonatomic) NSArray* sections;
 
 @end
 
@@ -35,6 +36,7 @@
     if (self) {
         self.title = @"新闻公告";
         self.tabBarItem.image = [UIImage imageNamed:@"fjyw"];
+        self.sections = [NSArray arrayWithObjects:@"今日思明", @"事要公告", @"工作动态", @"媒体聚焦", nil];
     }
     return self;
 }
@@ -52,7 +54,6 @@
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * pageNumber, scrollView.frame.size.height);
     scrollView.delegate = self;
     NSUInteger pageWidth = scrollView.frame.size.width;
-    [self.view addSubview:scrollView];
     for (int i = 0; i < 5; i++)
     {
         CGRect frame = scrollView.frame;
@@ -65,22 +66,28 @@
     
     UIView* pageControlView = [[UIView alloc] initWithFrame:CGRectMake(0, 160, kDeviceWidth, 20)];
     pageControlView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:pageControlView];
     UIPageControl* pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, 20)];
     pageControl.numberOfPages = pageNumber;
     pageControl.userInteractionEnabled = NO;
     [pageControlView addSubview:pageControl];
     self.pageControl = pageControl;
+    
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, 180)];
+    [headerView addSubview:scrollView];
+    [headerView addSubview:pageControlView];
         
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 180, 320, kMainViewHeight - 180) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, kMainViewHeight - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height) style:UITableViewStylePlain];
+    self.tableView.tableHeaderView = headerView;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self loadData];
-    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"正在加载新闻，请稍候...";
 }
 
 - (void)loadData
 {
+    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在加载新闻，请稍候...";
     NSURL* url = [[NSURL alloc] initWithString:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@101&pageSize=5&channelId=2345"];
     __block TCNewsViewController* weakSelf = self;
     [TBXML newTBXMLWithURL:url
@@ -130,6 +137,47 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.pageControl.currentPage = scrollView.contentOffset.x / scrollView.frame.size.width;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStyleBordered target:self action:@selector(more)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
+}
+
+- (void)more
+{
+    //todo
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.sections.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return self.sections[section];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    // Configure the cell...
+    TCDoc* doc = self.docs[indexPath.row];
+    cell.textLabel.text = doc.title;
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning

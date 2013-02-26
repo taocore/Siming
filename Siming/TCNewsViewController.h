@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCNewsViewController : UIViewController <UIScrollViewDelegate, NSXMLParserDelegate>
+@interface TCNewsViewController : UIViewController <UIScrollViewDelegate, NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
