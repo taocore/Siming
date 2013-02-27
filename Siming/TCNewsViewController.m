@@ -77,7 +77,7 @@
         CGRect frame = scrollView.frame;
         frame.origin = CGPointMake(pageWidth * i, 0);
         TCImagePage *view = [[TCImagePage alloc] initWithFrame:frame];
-        //view.tag = i + 1;
+        [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)]];
         [scrollView addSubview:view];
     }
     self.scrollView = scrollView;
@@ -193,6 +193,7 @@
     for (TCDoc* doc in imageDocs)
     {
         TCImagePage* imageView = self.scrollView.subviews[i++];
+        imageView.docId = doc.docId;
         imageView.title = doc.title;
         imageView.imageUrl = [doc imageAbsolutePath];
     }
@@ -230,6 +231,18 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.pageControl.currentPage = scrollView.contentOffset.x / scrollView.frame.size.width;
+}
+
+- (void)imageTapped:(UITapGestureRecognizer*)sender
+{
+    NSLog(@"sender: %@", sender);
+    TCImagePage* view = (TCImagePage*)sender.view;
+    TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
+    controller.docId = view.docId;
+    controller.channelId = @"2345";
+    controller.docTitle = view.title;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

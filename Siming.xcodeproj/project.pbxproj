@@ -219,7 +219,6 @@
 				04D3241116BB84F300312277 /* TCOfficeViewController.m */,
 				04D3241316BB85BB00312277 /* TCQuestionViewController.h */,
 				04D3241416BB85BB00312277 /* TCQuestionViewController.m */,
-				04C1609C16BB545200B19972 /* Supporting Files */,
 				E9BEAD1F16DA4B27004DBB37 /* TCImagePage.h */,
 				E9BEAD2016DA4B27004DBB37 /* TCImagePage.m */,
 				E9BD10F416DB9F2100023825 /* TCDocItemsViewController.h */,
@@ -228,6 +227,7 @@
 				048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */,
 				E9BD4E4A16DCECB200F82A64 /* TCMoreNewsViewController.h */,
 				E9BD4E4B16DCECB300F82A64 /* TCMoreNewsViewController.m */,
+				04C1609C16BB545200B19972 /* Supporting Files */,
 			);
 			path = Siming;
 			sourceTree = "<group>";

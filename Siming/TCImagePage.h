@@ -10,6 +10,7 @@
 
 @interface TCImagePage : UIView
 
+@property (copy, nonatomic) NSString* docId;
 @property (copy, nonatomic) NSString* imageUrl;
 @property (copy, nonatomic) NSString* title;
 

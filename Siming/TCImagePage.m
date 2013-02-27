@@ -49,6 +49,7 @@
 - (void)setTitle:(NSString *)title
 {
     self.label.text = title;
+    _title = title;
 }
 
 /*
