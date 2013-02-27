@@ -46,9 +46,21 @@
     return doc;
 }
 
+- (BOOL)hasImage
+{
+    return self.imagePath && [self.imagePath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length > 0;
+}
+
+- (NSString*)imageAbsolutePath
+{
+    NSString* docUrl = self.docPubUrl;
+    NSString* baseUrl = [docUrl stringByDeletingLastPathComponent];
+    return [baseUrl stringByAppendingPathComponent:self.imagePath];
+}
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"title: %@", self.title];
+    return [NSString stringWithFormat:@"title: %@; image: %@", self.title, self.imagePath];
 }
 
 @end

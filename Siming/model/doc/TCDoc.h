@@ -18,6 +18,10 @@
 @property (copy, nonatomic) NSString* content;
 @property (copy, nonatomic) NSString* createDate;
 
+- (BOOL)hasImage;
+
+- (NSString*)imageAbsolutePath;
+
 + (TCDoc*)docWithElement:(TBXMLElement*) docElement;
 
 @end

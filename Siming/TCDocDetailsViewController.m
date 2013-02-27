@@ -57,13 +57,9 @@
                            if (object)
                            {
                                TCDoc* doc = [TCDoc docWithElement:object];
-                               NSLog(@"1111");
                                NSString* html = [self contentTemplate];
-                               NSLog(@"222");
-                               html = [NSString stringWithFormat:html, self.docTitle, doc.createDate, doc.content];
-                               NSLog(@"333");
+                               html = [NSString stringWithFormat:html, self.docTitle, doc.createDate, [doc hasImage] ? [self imageTemplate:[doc imageAbsolutePath]] : @"", doc.content];
                                [self.contentView loadHTMLString:html baseURL:nil];
-                               NSLog(@"444");
                            }
                        }
                        NSLog(@"555");
@@ -76,7 +72,12 @@
 
 - (NSString*)contentTemplate
 {
-    return @"<html><h4 style=\"text-align:center;margin-bottom:0;\">%@</h4><div style=\"text-align:center;margin-bottom:15px;\">发布时间：%@</div><hr/><article>%@</article></html>";
+    return @"<html><h4 style=\"text-align:center;margin-bottom:0;\">%@</h4><div style=\"text-align:center;margin-bottom:15px;\">发布时间：%@</div><hr/><div><img %@/></div><article>%@</article></html>";
+}
+
+- (NSString*)imageTemplate:(NSString*)src
+{
+    return [NSString stringWithFormat:@"src=\"%@\" width=\"280\" height=\"200\" style=\"display:block;margin:10px auto;\"", src];
 }
 
 - (void)didReceiveMemoryWarning

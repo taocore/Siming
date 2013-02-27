@@ -113,10 +113,7 @@
                        {
                            TCImagePage* imageView = self.scrollView.subviews[i++];
                            imageView.title = doc.title;
-                           NSString* docUrl = doc.docPubUrl;
-                           NSString* baseUrl = [docUrl stringByDeletingLastPathComponent];
-                           NSString* imageUrl = [baseUrl stringByAppendingPathComponent:doc.imagePath];
-                           imageView.imageUrl = imageUrl;
+                           imageView.imageUrl = [doc imageAbsolutePath];
                        }
                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    }
