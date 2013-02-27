@@ -17,6 +17,7 @@
 @property (copy, nonatomic) NSString* docPubUrl;
 @property (copy, nonatomic) NSString* content;
 @property (copy, nonatomic) NSString* createDate;
+@property (copy, nonatomic) NSString* docType;
 
 - (BOOL)hasImage;
 

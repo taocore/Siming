@@ -43,6 +43,12 @@
     {
         doc.createDate = [TBXML textForElement:createDate];
     }
+    TBXMLElement* type = [TBXML childElementNamed:@"type" parentElement:docElement];
+    if (type)
+    {
+        doc.docType = [TBXML textForElement:type];
+    }
+
     return doc;
 }
 
