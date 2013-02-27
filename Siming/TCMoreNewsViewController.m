@@ -147,6 +147,7 @@
     controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
     controller.channelId = channel.channelId;
     controller.title = channel.name;
-    [self.navigationController pushViewController:controller animated:YES];}
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 @end

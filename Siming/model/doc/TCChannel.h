@@ -12,5 +12,6 @@
 
 @property (copy, nonatomic) NSString* channelId;
 @property (copy, nonatomic) NSString* name;
+@property (copy, nonatomic) NSArray* docs;
 
 @end

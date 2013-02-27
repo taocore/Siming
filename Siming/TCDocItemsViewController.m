@@ -72,9 +72,7 @@
                        }
                        NSLog(@"docs: %@", docs);
                        weakSelf.docs = docs;
-                       NSLog(@"aaa");
                        [weakSelf.tableView reloadData];
-                       NSLog(@"bbb");
                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    }
                    failure:^(TBXML* tbxml, NSError* error){

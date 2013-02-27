@@ -16,15 +16,15 @@
 #import "TCImagePage.h"
 #import "MBProgressHUD.h"
 #import "TCMoreNewsViewController.h"
+#import "TCChannel.h"
+#import "TCDocDetailsViewController.h"
 
 @interface TCNewsViewController ()
 
 @property (strong, nonatomic) UIScrollView* scrollView;
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) UIPageControl* pageControl;
-@property (nonatomic) NSString* currentElement;
-@property (nonatomic) TCDoc* currentDoc;
-@property (strong, nonatomic) NSMutableArray* docs;
+@property (strong, nonatomic) NSMutableArray* imageDocs;
 @property (copy, nonatomic) NSArray* sections;
 
 @end
@@ -37,7 +37,24 @@
     if (self) {
         self.title = @"新闻公告";
         self.tabBarItem.image = [UIImage imageNamed:@"fjyw"];
-        self.sections = [NSArray arrayWithObjects:@"今日思明", @"事要公告", @"工作动态", @"媒体聚焦", nil];
+        NSMutableArray* channels = [NSMutableArray arrayWithCapacity:5];
+        TCChannel* channel = [[TCChannel alloc] init];
+        channel.channelId = @"2340";
+        channel.name = @"今日思明";
+        [channels addObject:channel];
+        channel = [[TCChannel alloc] init];
+        channel.channelId = @"2341";
+        channel.name = @"事要公告";
+        [channels addObject:channel];
+        channel = [[TCChannel alloc] init];
+        channel.channelId = @"2342";
+        channel.name = @"工作动态";
+        [channels addObject:channel];
+        channel = [[TCChannel alloc] init];
+        channel.channelId = @"2344";
+        channel.name = @"媒体聚焦";
+        [channels addObject:channel];
+        _sections = channels;
     }
     return self;
 }
@@ -82,6 +99,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
+    
     [self loadData];
 }
 
@@ -89,47 +107,124 @@
 {
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在加载新闻，请稍候...";
-    NSURL* url = [[NSURL alloc] initWithString:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@101&pageSize=5&channelId=2345"];
-    __block TCNewsViewController* weakSelf = self;
-    [TBXML newTBXMLWithURL:url
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+    NSString* imageDocsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@101&pageSize=5&channelId=2345";
+    /*__block TCNewsViewController* weakSelf = self;
+    [TBXML newTBXMLWithURL:[NSURL URLWithString:imageDocsUrl]
                    success:^(TBXML *tbxml){
-                       weakSelf.docs = [NSMutableArray array];
+                       NSMutableArray* imageDocs = [NSMutableArray array];
                        if (tbxml.rootXMLElement) {
                            TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
                            if (object)
                            {
                                TCDoc* doc = [TCDoc docWithElement:object];
-                               [weakSelf.docs addObject:doc];
+                               [imageDocs addObject:doc];
                                while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
                                {
                                    TCDoc* doc = [TCDoc docWithElement:object];
-                                   [weakSelf.docs addObject:doc];
+                                   [imageDocs addObject:doc];
                                }
                            }
                        }
-                       NSLog(@"docs: %@", weakSelf.docs);
+                       NSLog(@"docs: %@", imageDocs);
                        int i = 0;
-                       for (TCDoc* doc in weakSelf.docs)
+                       for (TCDoc* doc in imageDocs)
                        {
                            TCImagePage* imageView = self.scrollView.subviews[i++];
                            imageView.title = doc.title;
                            imageView.imageUrl = [doc imageAbsolutePath];
                        }
+                       weakSelf.imageDocs = imageDocs;
+                       for (TCChannel* chanel in weakSelf.sections)
+                       {
+                           NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
+                           url = [url stringByAppendingFormat:@"&pageSize=%d&channelId=%@", 5, chanel.channelId];
+                           NSLog(@"url: %@", url);
+                           [TBXML newTBXMLWithURL:[NSURL URLWithString:url]
+                                          success:^(TBXML *tbxml){
+                                              NSMutableArray* docs = [NSMutableArray array];
+                                              if (tbxml.rootXMLElement) {
+                                                  TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
+                                                  if (object)
+                                                  {
+                                                      TCDoc* doc = [TCDoc docWithElement:object];
+                                                      [docs addObject:doc];
+                                                      while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
+                                                      {
+                                                          TCDoc* doc = [TCDoc docWithElement:object];
+                                                          [docs addObject:doc];
+                                                      }
+                                                  }
+                                              }
+                                              NSLog(@"docs: %@", docs);
+                                              chanel.docs = docs;
+                                          }
+                                          failure:^(TBXML* tbxml, NSError* error){
+                                              NSLog(@"error: %@", error);
+                                          }];
+                       }
+                       [weakSelf.tableView reloadData];
                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    }
                    failure:^(TBXML* tbxml, NSError* error){
                        
-                   }];
-    url = [NSURL URLWithString:@"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105&id=10461662&channelId=2340"];
-    //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
-    NSLog(@"data: %@", [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil]);
-    /*[TBXML newTBXMLWithURL:url
-                   success:^(TBXML *tbxml){
-                       NSLog(@"xml: %@", tbxml);
-                   }
-                   failure:^(TBXML* tbxml, NSError* error){
-                       NSLog(@"error: %@", error);
                    }];*/
+    NSString* xml = [NSString stringWithContentsOfURL:[NSURL URLWithString:imageDocsUrl] encoding:NSUTF8StringEncoding error:nil];
+    TBXML* tbxml = [TBXML newTBXMLWithXMLString:xml error:nil];
+    NSMutableArray* imageDocs = [NSMutableArray array];
+    if (tbxml.rootXMLElement) {
+        TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
+        if (object)
+        {
+            TCDoc* doc = [TCDoc docWithElement:object];
+            [imageDocs addObject:doc];
+            while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
+            {
+                TCDoc* doc = [TCDoc docWithElement:object];
+                [imageDocs addObject:doc];
+            }
+        }
+    }
+    NSLog(@"docs: %@", imageDocs);
+    int i = 0;
+    for (TCDoc* doc in imageDocs)
+    {
+        TCImagePage* imageView = self.scrollView.subviews[i++];
+        imageView.title = doc.title;
+        imageView.imageUrl = [doc imageAbsolutePath];
+    }
+    self.imageDocs = imageDocs;
+    NSString* channelUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
+    for (TCChannel* chanel in self.sections)
+    {
+        NSString* url = [channelUrl stringByAppendingFormat:@"&pageSize=%d&channelId=%@", 5, chanel.channelId];
+        NSLog(@"url: %@", url);
+        NSString* xml = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+        TBXML* tbxml = [TBXML newTBXMLWithXMLString:xml error:nil];
+        NSMutableArray* docs = [NSMutableArray array];
+        if (tbxml.rootXMLElement) {
+            TBXMLElement* object = [TBXML childElementNamed:@"object" parentElement:tbxml.rootXMLElement];
+            if (object)
+            {
+                TCDoc* doc = [TCDoc docWithElement:object];
+                [docs addObject:doc];
+                while ((object = [TBXML nextSiblingNamed:@"object" searchFromElement:object]))
+                {
+                    TCDoc* doc = [TCDoc docWithElement:object];
+                    [docs addObject:doc];
+                }
+            }
+        }
+        NSLog(@"docs: %@", docs);
+        chanel.docs = docs;
+    }
+    [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -156,12 +251,13 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return self.sections[section];
+    return ((TCChannel*)self.sections[section]).name;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    TCChannel* chanel = self.sections[section];
+    return chanel.docs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -174,9 +270,23 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     // Configure the cell...
-    TCDoc* doc = self.docs[indexPath.row];
+    TCChannel* chanel = self.sections[indexPath.section];
+    TCDoc* doc = chanel.docs[indexPath.row];
     cell.textLabel.text = doc.title;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TCChannel* chanel = self.sections[indexPath.section];
+    TCDoc* doc = chanel.docs[indexPath.row];
+    NSLog(@"%@", doc);
+    TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
+    controller.docId = doc.docId;
+    controller.channelId = chanel.channelId;
+    controller.docTitle = doc.title;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
