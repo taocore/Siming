@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TBXML.h"
 
 @interface TCChannel : NSObject
 
 @property (copy, nonatomic) NSString* channelId;
 @property (copy, nonatomic) NSString* name;
 @property (copy, nonatomic) NSArray* docs;
+
++ (TCChannel*)channelWithElement:(TBXMLElement*) channelElement;
 
 @end

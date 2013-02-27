@@ -280,7 +280,7 @@
     if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //®cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     // Configure the cell...
     TCChannel* chanel = self.sections[indexPath.section];

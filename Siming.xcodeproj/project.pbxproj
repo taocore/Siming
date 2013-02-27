@@ -39,6 +39,7 @@
 		E9BD10F316DB98CF00023825 /* TCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F216DB98CF00023825 /* TCChannel.m */; };
 		E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */; };
 		E9BD4E4C16DCECB300F82A64 /* TCMoreNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD4E4B16DCECB300F82A64 /* TCMoreNewsViewController.m */; };
+		E9BD51E616DE35E100737E33 /* TCChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD51E516DE35E100737E33 /* TCChannelsViewController.m */; };
 		E9BEA31516D858F0003C4F42 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31016D858F0003C4F42 /* TBXML+Compression.m */; };
 		E9BEA31616D858F0003C4F42 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31216D858F0003C4F42 /* TBXML+HTTP.m */; };
 		E9BEA31716D858F0003C4F42 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BEA31416D858F0003C4F42 /* TBXML.m */; };
@@ -107,6 +108,8 @@
 		E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDocItemsViewController.m; sourceTree = "<group>"; };
 		E9BD4E4A16DCECB200F82A64 /* TCMoreNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMoreNewsViewController.h; sourceTree = "<group>"; };
 		E9BD4E4B16DCECB300F82A64 /* TCMoreNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMoreNewsViewController.m; sourceTree = "<group>"; };
+		E9BD51E416DE35E100737E33 /* TCChannelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChannelsViewController.h; sourceTree = "<group>"; };
+		E9BD51E516DE35E100737E33 /* TCChannelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCChannelsViewController.m; sourceTree = "<group>"; };
 		E9BEA30F16D858F0003C4F42 /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
 		E9BEA31016D858F0003C4F42 /* TBXML+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+Compression.m"; sourceTree = "<group>"; };
 		E9BEA31116D858F0003C4F42 /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */,
 				E9BD4E4A16DCECB200F82A64 /* TCMoreNewsViewController.h */,
 				E9BD4E4B16DCECB300F82A64 /* TCMoreNewsViewController.m */,
+				E9BD51E416DE35E100737E33 /* TCChannelsViewController.h */,
+				E9BD51E516DE35E100737E33 /* TCChannelsViewController.m */,
 				04C1609C16BB545200B19972 /* Supporting Files */,
 			);
 			path = Siming;
@@ -443,6 +448,7 @@
 				E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */,
 				048A105D16DC85F600F9B7E8 /* TCDocDetailsViewController.m in Sources */,
 				E9BD4E4C16DCECB300F82A64 /* TCMoreNewsViewController.m in Sources */,
+				E9BD51E616DE35E100737E33 /* TCChannelsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

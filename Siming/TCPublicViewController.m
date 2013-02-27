@@ -14,6 +14,7 @@
 #import "TBXML+Compression.h"
 #import "TCDoc.h"
 #import "TCDocItemsViewController.h"
+#import "TCChannelsViewController.h"
 
 @interface TCPublicViewController ()
 
@@ -90,15 +91,30 @@
 {
     TCChannel* channel = self.list[indexPath.row];
     NSLog(@"%@", channel);
-    NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
-    //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
-    //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
-    TCDocItemsViewController* controller = [[TCDocItemsViewController alloc] initWithNibName:nil bundle:nil];
-    controller.url = url;
-    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
-    controller.channelId = channel.channelId;
-    controller.title = channel.name;
-    [self.navigationController pushViewController:controller animated:YES];
+    if ([@"2002" isEqualToString:channel.channelId])
+    {
+        NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@203";
+        //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
+        //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
+        TCChannelsViewController* controller = [[TCChannelsViewController alloc] initWithNibName:nil bundle:nil];
+        controller.url = url;
+        controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
+        controller.parentChannelId = channel.channelId;
+        controller.title = channel.name;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
+        //NSData* data = [[NSData alloc] initWithContentsOfURL:url];
+        //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
+        TCDocItemsViewController* controller = [[TCDocItemsViewController alloc] initWithNibName:nil bundle:nil];
+        controller.url = url;
+        controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
+        controller.channelId = channel.channelId;
+        controller.title = channel.name;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
