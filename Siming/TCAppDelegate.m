@@ -23,7 +23,7 @@
     // Override point for customization after application launch.
     TCNewsViewController *newsViewController = [[TCNewsViewController alloc] initWithNibName:nil bundle:nil];
     TCPublicViewController *publicViewController = [[TCPublicViewController alloc] initWithNibName:nil bundle:nil];
-    TCOfficeViewController *officeViewController = [[TCOfficeViewController alloc] initWithNibName:nil bundle:nil];
+    TCOfficeViewController *officeViewController = [[TCOfficeViewController alloc] initWithStyle:UITableViewStylePlain];
     TCQuestionViewController *questionViewController = [[TCQuestionViewController alloc] initWithNibName:nil bundle:nil];
     UIViewController *viewController1 = [[UINavigationController alloc] initWithRootViewController:newsViewController];
     UIViewController *viewController2 = [[UINavigationController alloc] initWithRootViewController:publicViewController];

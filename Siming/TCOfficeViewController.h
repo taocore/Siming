@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCOfficeViewController : UIViewController
+@interface TCOfficeViewController : UITableViewController
 
 @end
