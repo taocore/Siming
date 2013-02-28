@@ -15,6 +15,7 @@
 #import "TCDoc.h"
 #import "TCDocItemsViewController.h"
 #import "TCChannelsViewController.h"
+#import "TCPublicSuggestionSubmitViewController.h"
 
 @interface TCPublicViewController ()
 
@@ -101,6 +102,12 @@
         controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
         controller.parentChannelId = channel.channelId;
         controller.title = channel.name;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if ([@"4187" isEqualToString:channel.channelId])
+    {
+        TCPublicSuggestionSubmitViewController* controller = [[TCPublicSuggestionSubmitViewController alloc] initWithNibName:@"TCPublicSuggestionSubmitViewController" bundle:nil];
+        
         [self.navigationController pushViewController:controller animated:YES];
     }
     else
