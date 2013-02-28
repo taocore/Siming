@@ -42,6 +42,7 @@
 		04C160E216BB566900B19972 /* xxgk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C160D416BB566900B19972 /* xxgk@2x.png */; };
 		04D3241216BB84F300312277 /* TCOfficeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3241116BB84F300312277 /* TCOfficeViewController.m */; };
 		04D3241516BB85BB00312277 /* TCQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D3241416BB85BB00312277 /* TCQuestionViewController.m */; };
+		E9BA864F16DF95D500F69D6F /* TCStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BA864E16DF95D500F69D6F /* TCStringUtils.m */; };
 		E9BD10F016DB95B500023825 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10EF16DB95B500023825 /* MBProgressHUD.m */; };
 		E9BD10F316DB98CF00023825 /* TCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F216DB98CF00023825 /* TCChannel.m */; };
 		E9BD10F616DB9F2100023825 /* TCDocItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD10F516DB9F2100023825 /* TCDocItemsViewController.m */; };
@@ -117,6 +118,8 @@
 		04D3241116BB84F300312277 /* TCOfficeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOfficeViewController.m; sourceTree = "<group>"; };
 		04D3241316BB85BB00312277 /* TCQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCQuestionViewController.h; sourceTree = "<group>"; };
 		04D3241416BB85BB00312277 /* TCQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCQuestionViewController.m; sourceTree = "<group>"; };
+		E9BA864D16DF95D500F69D6F /* TCStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStringUtils.h; sourceTree = "<group>"; };
+		E9BA864E16DF95D500F69D6F /* TCStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStringUtils.m; sourceTree = "<group>"; };
 		E9BD10EE16DB95B500023825 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		E9BD10EF16DB95B500023825 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E9BD10F116DB98CF00023825 /* TCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCChannel.h; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				04950F4016D7634100756660 /* TCCommon.h */,
+				E9BA864D16DF95D500F69D6F /* TCStringUtils.h */,
+				E9BA864E16DF95D500F69D6F /* TCStringUtils.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				048D464516DF17E90065CC8E /* TCTicket.m in Sources */,
 				048D464916DF1B5A0065CC8E /* TCTicketDetailsViewController.m in Sources */,
 				048D465416DF3CA80065CC8E /* TCPublicSuggestionSubmitViewController.m in Sources */,
+				E9BA864F16DF95D500F69D6F /* TCStringUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

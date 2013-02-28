@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCCommon.h"
 #import "TBXML.h"
+#import "TCStringUtils.h"
 
 @interface TCPublicSuggestionSubmitViewController ()
 
@@ -59,13 +60,14 @@
 - (void)submit
 {
     NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/hbnJsonResponse.as?_in=phoneoption@005";
-    NSString* xm = self.nameField.text;
-    NSString* email = self.emailField.text;
-    NSString* lxdh = self.phoneField.text;
-    NSString* zt = self.titleField.text;
-    NSString* nr = self.contentField.text;
+    NSString* xm = [TCStringUtils URLencode:self.nameField.text stringEncoding:NSUTF8StringEncoding];
+    NSString* email = [TCStringUtils URLencode:self.emailField.text stringEncoding:NSUTF8StringEncoding];
+    NSString* lxdh = [TCStringUtils URLencode:self.phoneField.text stringEncoding:NSUTF8StringEncoding];
+    NSString* zt = [TCStringUtils URLencode:self.titleField.text stringEncoding:NSUTF8StringEncoding];
+    NSString* nr = [TCStringUtils URLencode:self.contentField.text stringEncoding:NSUTF8StringEncoding];
     BOOL sfgk = self.publicSwitch.on;
     url = [url stringByAppendingFormat:@"&xm=%@&email=%@&lxdh=%@&zt=%@&nr=%@&sfgk=%@", xm, email, lxdh, zt, nr, [NSNumber numberWithBool:sfgk]];
+    NSLog(@"url: %@", url);
     //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
     NSString* xml = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
     TBXML* tbxml = [TBXML newTBXMLWithXMLString:xml error:nil];
