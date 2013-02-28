@@ -45,7 +45,7 @@
 
 - (void)loadData
 {
-    NSString* url = [self.detailsUrl stringByAppendingFormat:@"&channelId=%@&id=%@", self.channelId, self.docId];
+    NSString* url = [self.detailsUrl stringByAppendingFormat:@"&id=%@", self.docId];
     NSLog(@"url: %@", url);
     //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];

@@ -220,7 +220,9 @@
     //NSLog(@"data: %@", [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]);
     TCDocItemsViewController* controller = [[TCDocItemsViewController alloc] initWithNibName:nil bundle:nil];
     controller.url = url;
-    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@106";
+    NSString* detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@104";
+    detailsUrl = [detailsUrl stringByAppendingFormat:@"&channelId=%@", channel.channelId];
+    controller.detailsUrl = detailsUrl;
     controller.channelId = channel.channelId;
     controller.title = channel.name;
     [self.navigationController pushViewController:controller animated:YES];

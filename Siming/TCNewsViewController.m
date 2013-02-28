@@ -239,7 +239,7 @@
     NSLog(@"sender: %@", sender);
     TCImagePage* view = (TCImagePage*)sender.view;
     TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
-    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
+    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105&channelId=2345";
     controller.docId = view.docId;
     controller.channelId = @"2345";
     controller.docTitle = view.title;
@@ -296,7 +296,9 @@
     TCDoc* doc = chanel.docs[indexPath.row];
     NSLog(@"%@", doc);
     TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
-    controller.detailsUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
+    NSString* url = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcObjectResponse.as?_in=phonewcm@105";
+    url = [url stringByAppendingFormat:@"&channelId=%@", chanel.channelId];
+    controller.detailsUrl = url;
     controller.docId = doc.docId;
     controller.channelId = chanel.channelId;
     controller.docTitle = doc.title;
