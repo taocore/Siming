@@ -12,6 +12,7 @@
 #import "TBXML+Compression.h"
 #import "TBXML+HTTP.h"
 #import "TCDoc.h"
+#import "TCTicketDetailsViewController.h"
 
 @interface TCQuestionViewController ()
 
@@ -63,8 +64,8 @@
                        }
                        NSLog(@"docs: %@", docs);
                        weakSelf.docs = docs;
-                       [weakSelf.tableView reloadData];
                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                       [weakSelf.tableView reloadData];
                    }
                    failure:^(TBXML* tbxml, NSError* error){
                        NSLog(@"error: %@", error);
@@ -101,12 +102,9 @@
 {
     TCDoc* doc = self.docs[indexPath.row];
     NSLog(@"%@", doc);
-    /*TCDocDetailsViewController* controller = [[TCDocDetailsViewController alloc] initWithNibName:nil bundle:nil];
-    controller.detailsUrl = self.detailsUrl;
-    controller.docId = doc.docId;
-    controller.channelId = self.channelId;
-    controller.docTitle = doc.title;
-    [self.navigationController pushViewController:controller animated:YES];*/
+    TCTicketDetailsViewController* controller = [[TCTicketDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    controller.ticketId = doc.docId;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		048A105D16DC85F600F9B7E8 /* TCDocDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */; };
+		048D464516DF17E90065CC8E /* TCTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 048D464416DF17E90065CC8E /* TCTicket.m */; };
+		048D464916DF1B5A0065CC8E /* TCTicketDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048D464816DF1B5A0065CC8E /* TCTicketDetailsViewController.m */; };
+		048D464E16DF21F40065CC8E /* ticket.tpl in Resources */ = {isa = PBXBuildFile; fileRef = 048D464D16DF21F40065CC8E /* ticket.tpl */; };
+		048D465016DF2C090065CC8E /* doc.tpl in Resources */ = {isa = PBXBuildFile; fileRef = 048D464F16DF2C090065CC8E /* doc.tpl */; };
 		04C1609616BB545200B19972 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609516BB545200B19972 /* UIKit.framework */; };
 		04C1609816BB545200B19972 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609716BB545200B19972 /* Foundation.framework */; };
 		04C1609A16BB545200B19972 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C1609916BB545200B19972 /* CoreGraphics.framework */; };
@@ -64,6 +68,12 @@
 /* Begin PBXFileReference section */
 		048A105B16DC85F600F9B7E8 /* TCDocDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDocDetailsViewController.h; sourceTree = "<group>"; };
 		048A105C16DC85F600F9B7E8 /* TCDocDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDocDetailsViewController.m; sourceTree = "<group>"; };
+		048D464316DF17E90065CC8E /* TCTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTicket.h; sourceTree = "<group>"; };
+		048D464416DF17E90065CC8E /* TCTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTicket.m; sourceTree = "<group>"; };
+		048D464716DF1B5A0065CC8E /* TCTicketDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTicketDetailsViewController.h; sourceTree = "<group>"; };
+		048D464816DF1B5A0065CC8E /* TCTicketDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTicketDetailsViewController.m; sourceTree = "<group>"; };
+		048D464D16DF21F40065CC8E /* ticket.tpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ticket.tpl; sourceTree = "<group>"; };
+		048D464F16DF2C090065CC8E /* doc.tpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = doc.tpl; sourceTree = "<group>"; };
 		04950F4016D7634100756660 /* TCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCommon.h; sourceTree = "<group>"; };
 		04C1609116BB545100B19972 /* Siming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C1609516BB545200B19972 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -164,6 +174,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048D464A16DF215A0065CC8E /* html */ = {
+			isa = PBXGroup;
+			children = (
+				048D464F16DF2C090065CC8E /* doc.tpl */,
+				048D464D16DF21F40065CC8E /* ticket.tpl */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
 		04950F3F16D7634100756660 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +225,7 @@
 		04C1609B16BB545200B19972 /* Siming */ = {
 			isa = PBXGroup;
 			children = (
+				048D464A16DF215A0065CC8E /* html */,
 				E9BD10ED16DB959000023825 /* MBProgressHUD */,
 				E9BEACFB16DA2F29004DBB37 /* SDWebImage */,
 				E9BEA30E16D858F0003C4F42 /* TBXML */,
@@ -232,6 +252,8 @@
 				E9BD4E4B16DCECB300F82A64 /* TCMoreNewsViewController.m */,
 				E9BD51E416DE35E100737E33 /* TCChannelsViewController.h */,
 				E9BD51E516DE35E100737E33 /* TCChannelsViewController.m */,
+				048D464716DF1B5A0065CC8E /* TCTicketDetailsViewController.h */,
+				048D464816DF1B5A0065CC8E /* TCTicketDetailsViewController.m */,
 				04C1609C16BB545200B19972 /* Supporting Files */,
 			);
 			path = Siming;
@@ -337,6 +359,8 @@
 				E9C090CE16D7B942008CD8AD /* TCDoc.m */,
 				E9BD10F116DB98CF00023825 /* TCChannel.h */,
 				E9BD10F216DB98CF00023825 /* TCChannel.m */,
+				048D464316DF17E90065CC8E /* TCTicket.h */,
+				048D464416DF17E90065CC8E /* TCTicket.m */,
 			);
 			path = doc;
 			sourceTree = "<group>";
@@ -412,6 +436,8 @@
 				04C160E116BB566900B19972 /* xxgk.png in Resources */,
 				04C160E216BB566900B19972 /* xxgk@2x.png in Resources */,
 				E9C090CA16D7A2FF008CD8AD /* Entitlement.plist in Resources */,
+				048D464E16DF21F40065CC8E /* ticket.tpl in Resources */,
+				048D465016DF2C090065CC8E /* doc.tpl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +475,8 @@
 				048A105D16DC85F600F9B7E8 /* TCDocDetailsViewController.m in Sources */,
 				E9BD4E4C16DCECB300F82A64 /* TCMoreNewsViewController.m in Sources */,
 				E9BD51E616DE35E100737E33 /* TCChannelsViewController.m in Sources */,
+				048D464516DF17E90065CC8E /* TCTicket.m in Sources */,
+				048D464916DF1B5A0065CC8E /* TCTicketDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

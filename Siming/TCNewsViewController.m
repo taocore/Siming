@@ -105,6 +105,7 @@
 
 - (void)loadData
 {
+    __block TCNewsViewController* weakSelf = self;
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在加载新闻，请稍候...";
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -192,14 +193,14 @@
     int i = 0;
     for (TCDoc* doc in imageDocs)
     {
-        TCImagePage* imageView = self.scrollView.subviews[i++];
+        TCImagePage* imageView = weakSelf.scrollView.subviews[i++];
         imageView.docId = doc.docId;
         imageView.title = doc.title;
         imageView.imageUrl = [doc imageAbsolutePath];
     }
-    self.imageDocs = imageDocs;
+    weakSelf.imageDocs = imageDocs;
     NSString* channelUrl = @"http://www.siming.gov.cn:8090/smhdphone/common/jdbcNoPageResponse.as?_in=phonewcm@201";
-    for (TCChannel* chanel in self.sections)
+    for (TCChannel* chanel in weakSelf.sections)
     {
         NSString* url = [channelUrl stringByAppendingFormat:@"&pageSize=%d&channelId=%@", 5, chanel.channelId];
         NSLog(@"url: %@", url);
@@ -222,8 +223,8 @@
         NSLog(@"docs: %@", docs);
         chanel.docs = docs;
     }
-    [self.tableView reloadData];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [weakSelf.tableView reloadData];
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         });
     });
 }
